@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend Quiz 41-50</title>
+    <style>
+        body {
+            background-color:#ffebee;
+            font-family: Arial, sans-serif;
+            
+        }
+
+        .quiz-container {
+            box-sizing: border-box;
+            width: 100%;
+            max-width: 700px;
+            margin: 2em auto;
+            padding: 2em;
+            background-color: salmon;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+            bottom: -40px;
+        }
+
+        .choices {
+            display: flex;
+            flex-direction: column;
+            margin-top: 1em;
+        }
+
+        .choice {
+            font-size: 1em;
+            display: block;
+            margin: 5px 0;
+            padding: 0.7em 1em;
+            background-color: hwb(0 50% 50% / 0.993);
+            color: white;
+            border: 1px solid black;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: left;
+        }
+
+        .choice:hover {
+            background-color:purple;
+            border: 1px solid purple;
+        }
+
+        .choice.correct {
+            background-color: #2ecc71 !important;
+        }
+
+        .choice.incorrect {
+            background-color: #e74c3c !important;
+        }
+
+        #feedback {
+            margin-top: 1em;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .summary {
+            margin-top: 2em;
+        }
+
+        .summary h2 {
+            margin-bottom: 1em;
+        }
+
+        .summary-item {
+            margin-bottom: 1.5em;
+            padding: 1em;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .summary-item.correct-answer {
+            background-color: #e8f5e9;
+            border-left: 5px solid #2ecc71;
+        }
+
+        .summary-item.incorrect-answer {
+            background-color: #ffebee;
+            border-left: 5px solid #e74c3c;
+        }
+
+        .summary-item p {
+            margin: 0.5em 0;
+        }
+
+        .correct-text {
+            color: #2ecc71;
+            font-weight: bold;
+        }
+
+        .incorrect-text {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .next-button {
+            padding: 0.8em 1.5em;
+            background-color: crimson;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 1em;
+        }
+
+        .next-button:hover {
+            background-color: purple;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="quiz-container">
+        <h1>LEVEL 5</h1>
+
+        <div class="question">
+            <p id="question-text">Question 1: What is the primary purpose of jQuery?</p>
+            <div class="choices">
+                <button class="choice" onclick="checkAnswer(0)">To manage state in web applications</button>
+                <button class="choice" onclick="checkAnswer(1)">To simplify DOM manipulation and event handling</button>
+                <button class="choice" onclick="checkAnswer(2)">To enable server-side rendering</button>
+                <button class="choice" onclick="checkAnswer(3)">To provide a full front-end framework</button>
+            </div>
+            <p id="feedback"></p>
+        </div>
+
+        <button class="next-button" onclick="nextQuestion()">Next</button>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: " What is the primary purpose of jQuery?",
+                choices: ["A) To manage state in web applications", "B) To simplify DOM manipulation and event handling", "C) To enable server-side rendering", "D) To provide a full front-end framework"],
+                correct: 1
+            },
+            {
+                question: " How do you select all <p> elements on a page using jQuery? ",
+                choices: ["A)  $('p')", "B) select('p')", "C)  getElements('p')", "D) querySelector('p')"],
+                correct: 0
+            },
+            {
+                question: "Which of the following jQuery methods is used to hide an element?",
+                choices: ["A) .fadeIn()", "B) .toggle()", "C)  .hide()", "D) .invisible()"],
+                correct: 2
+            },
+            {
+                question: "How do you add a class to an element using jQuery?",
+                choices: ["A) $(element).addClass('className')", "B) $(element).setClass('className')", "C) $(element).className('className')", "D) $(element).setClassName('className')"],
+                correct: 0
+            },
+            {
+                question: " How do you attach an event listener for a click event in jQuery?",
+                choices: ["A) $(element).click()", "B) $(element).on('click')", "C) $(element).addEventListener('click')", "D) $(element).trigger('click')"],
+                correct: 1
+            },
+            {
+                question: "What is the primary purpose of Tailwind CSS?",
+                choices: ["A) To provide pre-designed components", "B) To create custom themes", "C) To write CSS in a modular, reusable way with utility classes", "D) To replace traditional CSS frameworks like Bootstrap"],
+                correct: 0
+            },
+            {
+                question: "How do you center a block element horizontally using Tailwind CSS?",
+                choices: ["A) mx-auto", "B) text-center", "C) justify-center", "D) items-center"],
+                correct: 2
+            },
+            {
+                question: "How do you apply padding of 20px to all sides of an element in Tailwind CSS?",
+                choices: ["A)  p-20", "B) padding-20", "C)  px-20 py-20", "D) p-5"],
+                correct: 2
+            },
+            {
+                question: "How would you create a responsive layout where a grid has 3 columns on large screens and 1 column on small screens?",
+                choices: ["A) grid grid-cols-1 lg:grid-cols-3", "B) grid grid-cols-3 sm:grid-cols-1", "C) grid sm:grid-cols-1 lg:grid-cols-3", "D) grid-cols-1 lg:grid-cols-3"],
+                correct: 2
+            },
+            {
+                question: "Which of the following is the correct way to add a custom background color in Tailwind?",
+                choices: ["A)  bg-custom", "B)  bg-color-custom", "C)  bg-[#ff5733]", "D) bg-custom-color"],
+                correct: 0
+            }
+        ];
+
+        let currentQuestion = 0;
+        let correctAnswers = 0;
+        const userSelections = [];
+
+        function showQuestion() {
+            const questionText = document.getElementById("question-text");
+            questionText.innerHTML = `<strong>Question ${currentQuestion + 1}:</strong> ${questions[currentQuestion].question}`;
+
+            const choices = document.querySelectorAll(".choice");
+            choices.forEach((choice, index) => {
+                choice.textContent = questions[currentQuestion].choices[index];
+                choice.classList.remove("correct", "incorrect");
+                choice.disabled = false;
+            });
+
+            const feedback = document.getElementById("feedback");
+            feedback.textContent = "";
+        }
+
+        function checkAnswer(selected) {
+            const choices = document.querySelectorAll(".choice");
+            const feedback = document.getElementById("feedback");
+            const correctIndex = questions[currentQuestion].correct;
+
+            userSelections.push({
+                question: questions[currentQuestion].question,
+                selected: selected,
+                correct: correctIndex
+            });
+
+            choices.forEach((choice, index) => {
+                choice.disabled = true;
+                if (index === correctIndex) {
+                    choice.classList.add("correct");
+                }
+            });
+
+            if (selected === correctIndex) {
+                feedback.textContent = "Correct!";
+                correctAnswers++;
+            } else {
+                feedback.textContent = "Incorrect!";
+                choices[selected].classList.add("incorrect");
+            }
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+
+            if (currentQuestion < questions.length) {
+                showQuestion();
+            } else {
+                showSummary();
+            }
+        }
+
+        function showSummary() {
+            const quizContainer = document.querySelector(".quiz-container");
+            quizContainer.innerHTML = `<h2>LEVEL 5 Result</h2><div class="summary"></div>`;
+
+            const summaryContainer = document.querySelector(".summary");
+
+            userSelections.forEach((selection, index) => {
+                const questionObj = questions[index];
+                const isCorrect = selection.selected === selection.correct;
+
+                const summaryItem = document.createElement("div");
+                summaryItem.classList.add("summary-item");
+                summaryItem.classList.add(isCorrect ? "correct-answer" : "incorrect-answer");
+
+                summaryItem.innerHTML = `
+                    <p><strong>Question ${index + 1}:</strong> ${selection.question}</p>
+                    <p><strong>Your Answer:</strong> <span class="${isCorrect ? 'correct-text' : 'incorrect-text'}">
+                        ${questionObj.choices[selection.selected]}
+                    </span></p>
+                    ${!isCorrect ? `<p><strong>Correct Answer:</strong> <span class="correct-text">${questionObj.choices[selection.correct]}</span></p>` : ''}
+                `;
+
+                summaryContainer.appendChild(summaryItem);
+            });
+
+            const totalCorrect = document.createElement("p");
+            totalCorrect.innerHTML = `<strong>You got ${correctAnswers} out of ${questions.length} questions correct.</strong>`;
+            totalCorrect.style.fontSize = "1.2em";
+            totalCorrect.style.marginTop = "1.5em";
+            summaryContainer.appendChild(totalCorrect);
+        }
+
+        showQuestion();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing page </title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+
+    }
+
+    body {
+        color: #fff;
+    }
+
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px 10px;
+        background: transparent;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 100;
+    }
+
+    .logo {
+        font-size: 35px;
+        color:seashell;
+        text-decoration: none;
+        font-weight: 700;
+        filter: drop-shadow(0 0 5px #09001d);
+        position: relative;
+        left: 30px;
+    }
+    .navbar a {
+        color:aqua;
+        text-decoration: none;
+        padding: 10px 20px;
+        display: inline-block;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        text-align: center;
+        font-size: 20px;
+        font-weight: 900;
+        position: relative;
+        bottom: 12px;
+
+
+    }
+    .navbar a:hover,
+    .navbar a:active {
+     color:hotpink ;
+     border: 2px solid springgreen;
+     border-radius: 500px;
+    }    
+    
+
+    .main {
+        position: relative;
+        background-image: url("./bg\ 2.jpg");
+        min-height: 90vh;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .main::before {
+        content: "100%";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: inherit;
+        background-size: inherit;
+        background-position: inherit;
+        filter: blur(100px);
+        z-index: -10;
+    }
+
+
+    .home {
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .home-content {
+        max-width: 600px;
+
+    }
+
+    .home-content h1 {
+        font-size: 90px;
+        font-weight: 900;
+        position: relative;
+        left: 150px;
+        bottom: -110px;
+        font-family: 'Times New Roman', Times, serif;
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        animation: fadeInSlideUp 4s ease-out forwards;
+        color: lawngreen;
+    }
+
+    /* Define the keyframes for the fade-in and slide-up effect */
+    @keyframes fadeInSlideUp {
+        0% {
+            opacity: 0;
+            transform: translateY(50px);
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+    }
+
+    .home-content h2 {
+        font-size: 40px;
+        font-weight: 300;
+        position: relative;
+        bottom: -140px;
+        color: crimson;
+        left: 170px;
+        font-family: 'Times New Roman', Times, serif;
+
+    }
+
+    .home-content p {
+        font-size: 19px;
+        text-align: center;
+        text-shadow: 0 0 10px rgba(0, 0, 0, .3);
+        margin-bottom: 30px;
+        position: relative;
+        bottom: -170px;
+        left: 43px;
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: 300;
+        color:springgreen;
+
+    }
+
+    .home-content .start-btn {
+        width: 110px;
+        height: 55px;
+        background: pink;
+        border: 2px solid #fff;
+        outline: none;
+        border-radius: 200px;
+        box-shadow: 0 0 10px crimson;
+        font-size: 18px;
+        color: black;
+        letter-spacing: 1px;
+        font-weight: 600;
+        cursor: pointer;
+        text-align: center;
+        position: relative;
+        left: 250px;
+        bottom: -100px;
+        transition: .5s;
+    }
+
+    .home-content.start-btn:hover {
+        background-color: #09001d;
+        box-shadow: none;
+        
+         
+    }
+    .portfolio {
+            text-decoration: none;
+        }
+        
+        @media (max-width: 576px) { /* Mobile view */
+            .head {
+                margin-left: 5px; 
+                margin-top: 80px; 
+            }
+            p,h5 {
+                font-size: medium; 
+            }
+            .levels {
+                max-width: 90%; 
+            }
+        }
+        
+        @media (max-width: 768px) { /* Tablet view */
+            .head {
+                margin-left: 10px; 
+                margin-top: 100px; 
+            }
+            p,h5 {
+                font-size: large; 
+            }
+        }
+        .footer{
+            background-color:crimson;
+            color:black;
+            font-size: 20px;
+            font-family: 'Times New Roman', Times, serif;
+            text-align: center;
+            position: relative;
+            bottom: -70px;
+        
+
+        }
+        .About {
+            font-size: 25px;
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: 900;
+            position: relative;
+            bottom: -30px;
+        }
+       .About h2{
+            text-align: center;
+            color:navy;
+            position: relative;
+            bottom: 10px;
+       }
+       .About p{
+        color: black;
+        position: relative;
+        bottom: 1px;
+        left: 20px;
+        font-size: 23px;
+        font-weight: 300;
+        
+        
+       }
+    
+</style>
+
+<body>
+    <main class="main">
+        <header class="header">
+            <a href="#" class="logo"><strong> Quiz </strong></a>
+            <nav class="navbar">
+                <a href="Quiz 1.html"><b>STAGE 1</b></a>
+                <a href="Quiz 2.html"><b>STAGE 2</b></a>
+                <a href="Quiz 3.html"><b>STAGE 3</b></a>
+                <a href="Quiz 4.html"><b>STAGE 4</b></a>
+                <a href="Quiz 5.html"><b>STAGE 5</b></a>
+                
+            </nav>
+            
+        </header>
+        <section class="home">
+            <div class="home-content">
+                <h1> <b>Web Design</b> </h1>
+                <h2><b> Welcome to Quiz</b></h2>
+                <p><b>Test your skills and knowledge of web design principles! This quiz covers HTML, CSS, and JavaScript fundamentals.Whether you're a beginner or an experienced developer, challenge yourself and see how well you know front-end technologies. Ready to put your web design skills to the test Let's get started.</b></p>
+                
+            </div>
+
+        </section>
+    </main>
+    <div class="About">
+        <h2><b><u>About</u></b></h2>
+        <p><b>Hello, I'm <a href="portfolio.html" class="profile"> Mumtaj</a> . I'm passionate  web development and am currently diving deep into creating interactive and user-friendly applications. I hold a B.E(CSE) degree, which has equipped me with a solid foundation in technology and engineering principles. This quiz is designed to test your knowledge of frontend-related problems and help you learn along the way!</b></p>
+    </div>
+    <div class="footer">
+        <h5><b>Developed by @ MumtajAnwar</b></h5>
+    
+    
+
+
+</body>
+
+</html>

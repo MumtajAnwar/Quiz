@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend Quiz 31-40</title>
+    <style>
+        body {
+            background-color:#ffebee;
+            font-family: Arial, sans-serif;
+            
+        }
+
+        .quiz-container {
+            box-sizing: border-box;
+            width: 100%;
+            max-width: 700px;
+            margin: 2em auto;
+            padding: 2em;
+            background-color: salmon;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+            bottom: -40px;
+        }
+
+        .choices {
+            display: flex;
+            flex-direction: column;
+            margin-top: 1em;
+        }
+
+        .choice {
+            font-size: 1em;
+            display: block;
+            margin: 5px 0;
+            padding: 0.7em 1em;
+            background-color: hwb(0 50% 50% / 0.993);
+            color: white;
+            border: 1px solid black;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: left;
+        }
+
+        .choice:hover {
+            background-color:purple;
+            border: 1px solid purple;
+        }
+
+        .choice.correct {
+            background-color: #2ecc71 !important;
+        }
+
+        .choice.incorrect {
+            background-color: #e74c3c !important;
+        }
+
+        #feedback {
+            margin-top: 1em;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .summary {
+            margin-top: 2em;
+        }
+
+        .summary h2 {
+            margin-bottom: 1em;
+        }
+
+        .summary-item {
+            margin-bottom: 1.5em;
+            padding: 1em;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .summary-item.correct-answer {
+            background-color: #e8f5e9;
+            border-left: 5px solid #2ecc71;
+        }
+
+        .summary-item.incorrect-answer {
+            background-color: #ffebee;
+            border-left: 5px solid #e74c3c;
+        }
+
+        .summary-item p {
+            margin: 0.5em 0;
+        }
+
+        .correct-text {
+            color: #2ecc71;
+            font-weight: bold;
+        }
+
+        .incorrect-text {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .next-button {
+            padding: 0.8em 1.5em;
+            background-color: crimson;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 1em;
+        }
+
+        .next-button:hover {
+            background-color: purple;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <div class="quiz-container">
+        <h1>LEVEL 4</h1>
+
+        <div class="question">
+            <p id="question-text">Question 1: What does the v-model directive do in Vue.js?
+            </p>
+            <div class="choices">
+                <button class="choice" onclick="checkAnswer(0)">Binds a value to an input element </button>
+                <button class="choice" onclick="checkAnswer(1)">Dynamically adds classes to an element</button>
+                <button class="choice" onclick="checkAnswer(2)">Creates a one-way data binding from the element to the data</button>
+                <button class="choice" onclick="checkAnswer(3)">Handles events like click and input </button>
+            </div>
+            <p id="feedback"></p>
+        </div>
+
+        <button class="next-button" onclick="nextQuestion()">Next</button>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "What does the v-model directive do in Vue.js?",
+                choices: ["A) Binds a value to an input element", "B) Dynamically adds classes to an element", "C) Creates a one-way data binding from the element to the data", "D) Handles events like click and input"],
+                correct: 0
+            },
+            {
+                question: " Which of the following directives can be used to render a list of items in Vue.js?",
+                choices: ["A)  v-if ", "B) v-show", "C) v-for", "D) v-bind"],
+                correct: 2
+            },
+            {
+                question: "How do you define a component in Vue.js?",
+                choices: ["A) Vue.component()", "B) Vue.createComponent()", "C)  <component></component>", "D) data() and methods()"],
+                correct: 0
+            },
+            {
+                question: "Which of the following lifecycle hooks is called when a component is first created, before it is mounted?",
+                choices: ["A)mounted ", "B) created", "C) beforeMount", "D)  updated"],
+                correct: 1
+            },
+            {
+                question: "What is the purpose of v-bind in Vue.js?",
+                choices: ["A) To bind an event listener to an element", "B) To bind an attribute to an element", "C) To bind data to a form input", "D) To dynamically render elements"],
+                correct: 1
+            },
+            {
+                question: "What is the primary difference between Svelte and other front-end frameworks like React and Vue?",
+                choices: ["A) Svelte uses a virtual DOM", "B) Svelte compiles to vanilla JavaScript at build time", "C) Svelte doesn't use components", "D) Svelte uses two-way data binding by default"],
+                correct: 1
+            },
+            {
+                question: "How do you create a reactive variable in Svelte?",
+                choices: ["A) let count = 0", "B) const count = reactive(0)", "C) $count = 0", "D) let count: number = 0"],
+                correct: 0
+            },
+            {
+                question: "Which method is used to create a reactive store in Svelte?",
+                choices: ["A) createStore()", "B)  writable()", "C)  reactive()", "D) createReactive()"],
+                correct: 1
+            },
+            {
+                question: "What does the $: syntax in Svelte signify?",
+                choices: ["A)  It's used to define a function.", "B)  It's used to run code reactively when dependencies change.", "C)  It's used for defining an event listener.", "D)  It's used to define a component lifecycle function."],
+                correct: 1
+            },
+            {
+                question: "How do you pass props from a parent component to a child component in Svelte?",
+                choices: ["A) <Child prop={value} />", "B) <Child bind:value={value} />", "C) <Child props={value} />", "D) <Child bind:props={value} />"],
+                correct: 0
+            }
+        ];
+
+        let currentQuestion = 0;
+        let correctAnswers = 0;
+        const userSelections = [];
+
+        function showQuestion() {
+            const questionText = document.getElementById("question-text");
+            questionText.innerHTML = `<strong>Question ${currentQuestion + 1}:</strong> ${questions[currentQuestion].question}`;
+
+            const choices = document.querySelectorAll(".choice");
+            choices.forEach((choice, index) => {
+                choice.textContent = questions[currentQuestion].choices[index];
+                choice.classList.remove("correct", "incorrect");
+                choice.disabled = false;
+            });
+
+            const feedback = document.getElementById("feedback");
+            feedback.textContent = "";
+        }
+
+        function checkAnswer(selected) {
+            const choices = document.querySelectorAll(".choice");
+            const feedback = document.getElementById("feedback");
+            const correctIndex = questions[currentQuestion].correct;
+
+            userSelections.push({
+                question: questions[currentQuestion].question,
+                selected: selected,
+                correct: correctIndex
+            });
+
+            choices.forEach((choice, index) => {
+                choice.disabled = true;
+                if (index === correctIndex) {
+                    choice.classList.add("correct");
+                }
+            });
+
+            if (selected === correctIndex) {
+                feedback.textContent = "Correct!";
+                correctAnswers++;
+            } else {
+                feedback.textContent = "Incorrect!";
+                choices[selected].classList.add("incorrect");
+            }
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+
+            if (currentQuestion < questions.length) {
+                showQuestion();
+            } else {
+                showSummary();
+            }
+        }
+
+        function showSummary() {
+            const quizContainer = document.querySelector(".quiz-container");
+            quizContainer.innerHTML = `<h2>LEVEL 4 Result</h2><div class="summary"></div>`;
+
+            const summaryContainer = document.querySelector(".summary");
+
+            userSelections.forEach((selection, index) => {
+                const questionObj = questions[index];
+                const isCorrect = selection.selected === selection.correct;
+
+                const summaryItem = document.createElement("div");
+                summaryItem.classList.add("summary-item");
+                summaryItem.classList.add(isCorrect ? "correct-answer" : "incorrect-answer");
+
+                summaryItem.innerHTML = `
+                    <p><strong>Question ${index + 1}:</strong> ${selection.question}</p>
+                    <p><strong>Your Answer:</strong> <span class="${isCorrect ? 'correct-text' : 'incorrect-text'}">
+                        ${questionObj.choices[selection.selected]}
+                    </span></p>
+                    ${!isCorrect ? `<p><strong>Correct Answer:</strong> <span class="correct-text">${questionObj.choices[selection.correct]}</span></p>` : ''}
+                `;
+
+                summaryContainer.appendChild(summaryItem);
+            });
+
+            const totalCorrect = document.createElement("p");
+            totalCorrect.innerHTML = `<strong>You got ${correctAnswers} out of ${questions.length} questions correct.</strong>`;
+            totalCorrect.style.fontSize = "1.2em";
+            totalCorrect.style.marginTop = "1.5em";
+            summaryContainer.appendChild(totalCorrect);
+        }
+
+        showQuestion();
+    </script>
+</body>
+
+</html>

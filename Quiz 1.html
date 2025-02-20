@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend Quiz 1-10</title>
+    <style>
+        body {
+            background-color:#ffebee;
+            font-family: Arial, sans-serif;
+            
+        }
+
+        .quiz-container {
+            box-sizing: border-box;
+            width: 100%;
+            max-width: 700px;
+            margin: 2em auto;
+            padding: 2em;
+            background-color: salmon;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+            bottom: -40px;
+        }
+
+        .choices {
+            display: flex;
+            flex-direction: column;
+            margin-top: 1em;
+        }
+
+        .choice {
+            font-size: 1em;
+            display: block;
+            margin: 5px 0;
+            padding: 0.7em 1em;
+            background-color: hwb(0 50% 50% / 0.993);
+            color: white;
+            border: 1px solid black;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: left;
+        }
+
+        .choice:hover {
+            background-color:purple;
+            border: 1px slid purple;
+        }
+
+        .choice.correct {
+            background-color: #2ecc71 !important;
+        }
+
+        .choice.incorrect {
+            background-color: #e74c3c !important;
+        }
+
+        #feedback {
+            margin-top: 1em;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .summary {
+            margin-top: 2em;
+        }
+
+        .summary h2 {
+            margin-bottom: 1em;
+        }
+
+        .summary-item {
+            margin-bottom: 1.5em;
+            padding: 1em;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .summary-item.correct-answer {
+            background-color: #e8f5e9;
+            border-left: 5px solid #2ecc71;
+        }
+
+        .summary-item.incorrect-answer {
+            background-color: #ffebee;
+            border-left: 5px solid #e74c3c;
+        }
+
+        .summary-item p {
+            margin: 0.5em 0;
+        }
+
+        .correct-text {
+            color: #2ecc71;
+            font-weight: bold;
+        }
+
+        .incorrect-text {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .next-button {
+            padding: 0.8em 1.5em;
+            background-color: crimson;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 1em;
+        }
+
+        .next-button:hover {
+            background-color: purple;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="quiz-container">
+        <h1>LEVEL 1</h1>
+
+        <div class="question">
+            <p id="question-text">Question 1: Which attribute is used to define the alternative text for an image in HTML?</p>
+            <div class="choices">
+                <button class="choice" onclick="checkAnswer(0)"> alt</button>
+                <button class="choice" onclick="checkAnswer(1)">src</button>
+                <button class="choice" onclick="checkAnswer(2)">title</button>
+                <button class="choice" onclick="checkAnswer(3)">description</button>
+            </div>
+            <p id="feedback"></p>
+        </div>
+
+        <button class="next-button" onclick="nextQuestion()">Next</button>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "Which attribute is used to define the alternative text for an image in HTML?",
+                choices: ["A) alt", "B) src", "C) title", "D) description"],
+                correct: 0
+            },
+            {
+                question: " Which attribute is used to specify the width of a table?",
+                choices: ["A)  height", "B) width", "C) size", "D) length"],
+                correct: 1
+            },
+            {
+                question: "Which attribute is used to define the alignment of the content in a table cell?",
+                choices: ["A) align", "B) center", "C)  valign", "D) text-align"],
+                correct: 0
+            },
+            {
+                question: "Which attribute is used to set the height of a table row?",
+                choices: ["A) height", "B)", "C) size", "D) valign"],
+                correct: 0
+            },
+            {
+                question: "What does the alt attribute in an <img> tag provide?",
+                choices: ["A) A link to an alternate image", "B) A description of the image for screen readers", "C) The image height", "D) The image size"],
+                correct: 1
+            },
+            {
+                question: "Which CSS property controls the space between the content and the border of an element?",
+                choices: ["A) padding", "B) margin", "C) border-spacing", "D) spacing"],
+                correct: 0
+            },
+            {
+                question: "Which property is used to change the background color of an element?",
+                choices: ["A) color", "B) background-color", "C) background", "D) bg-color"],
+                correct: 1
+            },
+            {
+                question: "What does the z-index property in CSS control?",
+                choices: ["A) The opacity of an element", "B) The width of an element", "C) The stacking order of elements", "D) The font size of an element"],
+                correct: 2
+            },
+            {
+                question: "Which CSS property is used to change the font size of text?",
+                choices: ["A) font-size", "B) text-size", "C) font-family", "D) text-style"],
+                correct: 0
+            },
+            {
+                question: "Which of the following CSS layout systems allows you to create responsive grid layouts?",
+                choices: ["A) Flexbox", "B) Grid", "C) Block", "D) Table"],
+                correct: 1
+            }
+        ];
+
+        let currentQuestion = 0;
+        let correctAnswers = 0;
+        const userSelections = [];
+
+        function showQuestion() {
+            const questionText = document.getElementById("question-text");
+            questionText.innerHTML = `<strong>Question ${currentQuestion + 1}:</strong> ${questions[currentQuestion].question}`;
+
+            const choices = document.querySelectorAll(".choice");
+            choices.forEach((choice, index) => {
+                choice.textContent = questions[currentQuestion].choices[index];
+                choice.classList.remove("correct", "incorrect");
+                choice.disabled = false;
+            });
+
+            const feedback = document.getElementById("feedback");
+            feedback.textContent = "";
+        }
+
+        function checkAnswer(selected) {
+            const choices = document.querySelectorAll(".choice");
+            const feedback = document.getElementById("feedback");
+            const correctIndex = questions[currentQuestion].correct;
+
+            userSelections.push({
+                question: questions[currentQuestion].question,
+                selected: selected,
+                correct: correctIndex
+            });
+
+            choices.forEach((choice, index) => {
+                choice.disabled = true;
+                if (index === correctIndex) {
+                    choice.classList.add("correct");
+                }
+            });
+
+            if (selected === correctIndex) {
+                feedback.textContent = "Correct!";
+                correctAnswers++;
+            } else {
+                feedback.textContent = "Incorrect!";
+                choices[selected].classList.add("incorrect");
+            }
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+
+            if (currentQuestion < questions.length) {
+                showQuestion();
+            } else {
+                showSummary();
+            }
+        }
+
+        function showSummary() {
+            const quizContainer = document.querySelector(".quiz-container");
+            quizContainer.innerHTML = `<h2>LEVEL 1 Result</h2><div class="summary"></div>`;
+
+            const summaryContainer = document.querySelector(".summary");
+
+            userSelections.forEach((selection, index) => {
+                const questionObj = questions[index];
+                const isCorrect = selection.selected === selection.correct;
+
+                const summaryItem = document.createElement("div");
+                summaryItem.classList.add("summary-item");
+                summaryItem.classList.add(isCorrect ? "correct-answer" : "incorrect-answer");
+
+                summaryItem.innerHTML = `
+                    <p><strong>Question ${index + 1}:</strong> ${selection.question}</p>
+                    <p><strong>Your Answer:</strong> <span class="${isCorrect ? 'correct-text' : 'incorrect-text'}">
+                        ${questionObj.choices[selection.selected]}
+                    </span></p>
+                    ${!isCorrect ? `<p><strong>Correct Answer:</strong> <span class="correct-text">${questionObj.choices[selection.correct]}</span></p>` : ''}
+                `;
+
+                summaryContainer.appendChild(summaryItem);
+            });
+
+            const totalCorrect = document.createElement("p");
+            totalCorrect.innerHTML = `<strong>You got ${correctAnswers} out of ${questions.length} questions correct.</strong>`;
+            totalCorrect.style.fontSize = "1.2em";
+            totalCorrect.style.marginTop = "1.5em";
+            summaryContainer.appendChild(totalCorrect);
+        }
+
+        showQuestion();
+    </script>
+</body>
+
+</html>
